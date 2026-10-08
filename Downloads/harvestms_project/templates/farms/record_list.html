@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Harvest Records</h2>
+  <a href="{% url 'farms:record_create' %}" class="btn btn-brand">+ Record Harvest</a>
+</div>
+<div class="card p-3">
+<table class="table">
+  <thead><tr><th>Crop</th><th>Plot</th><th>Harvest Date</th><th>Quantity (kg)</th><th>Quality</th><th>Days to Maturity</th></tr></thead>
+  <tbody>
+  {% for r in records %}
+    <tr>
+      <td>{{ r.crop.name }}</td>
+      <td>{{ r.plot.name }}</td>
+      <td>{{ r.harvest_date }}</td>
+      <td>{{ r.quantity_kg }}</td>
+      <td>{{ r.get_quality_display }}</td>
+      <td>{{ r.actual_days_to_maturity }}</td>
+    </tr>
+  {% empty %}
+    <tr><td colspan="6" class="text-muted">No harvest records yet. Each record you add improves future AI predictions for that crop.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}
