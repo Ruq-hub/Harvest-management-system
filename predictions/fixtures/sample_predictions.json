@@ -1,0 +1,21 @@
+[
+  {
+    "model": "predictions.harvestprediction",
+    "pk": 1,
+    "fields": {
+      "plot": 1,
+      "crop": 1,
+      "stage_used": "STATS",
+      "predicted_harvest_date": "2026-09-06",
+      "predicted_window_start": "2026-09-04",
+      "predicted_window_end": "2026-09-08",
+      "predicted_yield_kg": "3700.00",
+      "confidence_note": "Based on 3 past harvest record(s) of Maize on this farm (avg 97 days to maturity).",
+      "review_status": "CONFIRMED",
+      "reviewed_by": null,
+      "reviewed_at": "2026-10-03T13:16:34.378Z",
+      "user_adjusted_date": null,
+      "created_at": "2026-10-03T13:15:49.217Z"
+    }
+  }
+]

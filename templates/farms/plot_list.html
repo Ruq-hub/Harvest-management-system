@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Plots</h2>
+  <a href="{% url 'farms:plot_create' %}" class="btn btn-brand">+ Register Plot</a>
+</div>
+<div class="card p-3">
+<table class="table">
+  <thead><tr><th>Name</th><th>Location</th><th>Size (ha)</th><th>Current Crop</th><th>Planting Date</th></tr></thead>
+  <tbody>
+  {% for plot in plots %}
+    <tr>
+      <td><a href="{% url 'farms:plot_detail' plot.pk %}">{{ plot.name }}</a></td>
+      <td>{{ plot.location|default:"—" }}</td>
+      <td>{{ plot.size_hectares }}</td>
+      <td>{{ plot.current_crop|default:"—" }}</td>
+      <td>{{ plot.planting_date|default:"—" }}</td>
+    </tr>
+  {% empty %}
+    <tr><td colspan="5" class="text-muted">No plots registered yet.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ crop }}</h2>
+<div class="card p-3 mb-3">
+  <p><strong>Typical days to maturity:</strong> {{ crop.typical_days_to_maturity }} (± {{ crop.maturity_tolerance_days }} days)</p>
+  <p><strong>Expected yield:</strong> {{ crop.expected_yield_per_hectare }} kg/ha</p>
+  <p><strong>Notes:</strong> {{ crop.notes|default:"—" }}</p>
+</div>
+<h5>Recent Harvest Records</h5>
+<table class="table table-sm">
+  <thead><tr><th>Plot</th><th>Harvest Date</th><th>Quantity (kg)</th><th>Quality</th></tr></thead>
+  <tbody>
+  {% for r in records %}
+    <tr><td>{{ r.plot.name }}</td><td>{{ r.harvest_date }}</td><td>{{ r.quantity_kg }}</td><td>{{ r.get_quality_display }}</td></tr>
+  {% empty %}
+    <tr><td colspan="4" class="text-muted">No harvest records yet for this crop.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

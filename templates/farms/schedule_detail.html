@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Harvest Schedule — {{ schedule.plot.name }}</h2>
+<div class="card p-3">
+  <p><strong>Date:</strong> {{ schedule.scheduled_date }}</p>
+  <p><strong>Status:</strong> {{ schedule.get_status_display }}</p>
+  <p><strong>Based on AI prediction:</strong> {% if schedule.based_on_prediction %}Yes{% else %}No{% endif %}</p>
+  <p><strong>Labour needed:</strong> {{ schedule.labour_needed }} worker(s)</p>
+  <p><strong>Equipment needed:</strong> {{ schedule.equipment_needed|default:"—" }}</p>
+  <p><strong>Transport arranged:</strong> {% if schedule.transport_arranged %}Yes{% else %}No{% endif %}</p>
+  <p><strong>Notes:</strong> {{ schedule.notes|default:"—" }}</p>
+
+  <div class="d-flex gap-2 mt-3">
+    {% if schedule.status == "PLANNED" %}
+    <a href="{% url 'farms:schedule_confirm' schedule.pk %}" class="btn btn-success">Confirm Schedule</a>
+    {% endif %}
+    {% if schedule.status == "CONFIRMED" %}
+    <a href="{% url 'farms:record_create' %}?schedule={{ schedule.pk }}" class="btn btn-brand">Record Harvest Result</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
